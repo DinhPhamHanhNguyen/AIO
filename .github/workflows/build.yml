@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        python: [3.12.3] # Define the Python versions you want to test
+        python: [3.7, 3.8, 3.9, 3.10]
 
     steps:
       - uses: actions/checkout@v2
@@ -25,6 +25,10 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Install tox and any other packages
         run: pip install tox
+      - name: Print directory structure
+        run: |
+          echo "Current Directory Structure"
+          ls -R
       - name: Run tox
         run: tox -e py
       - name: SonarQube Scan
