@@ -5,10 +5,16 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   sonarqube:
     name: SonarQube
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python: [3.7, 3.8, 3.9, 3.10] # Define the Python versions you want to test
+
     steps:
       - uses: actions/checkout@v2
         with:
